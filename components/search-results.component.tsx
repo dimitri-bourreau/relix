@@ -1,6 +1,5 @@
 import { VideoData } from "@/features/video/types/video-data.type";
-import clsx from "clsx";
-import { ReactNode } from "react";
+import { ResultsContainer } from "@/components/result-container.component";
 
 interface SearchResultsProps {
   results: VideoData[];
@@ -14,37 +13,10 @@ export const SearchResults = ({
   inputIsEmpty,
 }: SearchResultsProps) => {
   return (
-    <Wrapper inputIsEmpty={inputIsEmpty} isPending={isPending}>
-      {results.map((videoData) => (
-        <p key={JSON.stringify(videoData)}>{videoData.word}</p>
+    <ResultsContainer inputIsEmpty={inputIsEmpty} isPending={isPending}>
+      {results.map((videoData, index) => (
+        <p key={`${JSON.stringify(videoData)}-${index}`}>{videoData.word}</p>
       ))}
-    </Wrapper>
+    </ResultsContainer>
   );
 };
-
-interface WrapperProps {
-  children?: ReactNode;
-  isPending?: boolean;
-  inputIsEmpty: boolean;
-}
-
-const Wrapper = ({
-  children,
-  inputIsEmpty,
-  isPending = false,
-}: WrapperProps) => (
-  <section
-    className={clsx(
-      "p-1 w-full h-64 flex items-center justify-center bg-white/90 rounded transition-all",
-      {
-        "animate-pulse": isPending,
-      },
-      {
-        "opacity-0": inputIsEmpty,
-        "opacity-100": !inputIsEmpty,
-      },
-    )}
-  >
-    {children}
-  </section>
-);
