@@ -14,6 +14,7 @@ export const getVideoDataForWord = async (
     id: videoData.definition.id,
     source: videoData.definition.source,
     videoUrl: videoData.definition.path,
+    videoPosterUrl: videoData.definition.image,
     word: videoData.definition.word,
   }));
 };

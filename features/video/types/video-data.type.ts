@@ -5,5 +5,6 @@ export interface VideoData {
   id: DefinitionOrSignBase["id"];
   source: DefinitionOrSignBase["source"];
   videoUrl: DefinitionOrSignBase["path"];
+  videoPosterUrl: DefinitionOrSignBase["image"];
   word: DefinitionOrSignBase["word"];
 }
