@@ -19,7 +19,8 @@ export default function RootLayout({
         <BackgroundLines />
         <div className="flex flex-col items-center justify-center gap-2 text-center">
           <h1 className="text-7xl">PLSF</h1>
-          <h2 className="text-xl">Partager facilement des signes de la LSF</h2>
+          <h2 className="text-xl">Partagez facilement des signes de la LSF</h2>
+          <h3>Cherchez des signes, faites une liste, partagez le lien</h3>
         </div>
         {children}
       </body>
