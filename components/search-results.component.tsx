@@ -46,6 +46,7 @@ export const SearchResults = ({
                 poster={videoData.videoPosterUrl || undefined}
                 className="rounded"
                 autoPlay={index === 0}
+                loop
               >
                 <source src={videoData.videoUrl} type="video/mp4" />
               </video>
