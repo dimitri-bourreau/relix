@@ -19,9 +19,7 @@ export default function RootLayout({
         <BackgroundLines />
         <div className="flex flex-col items-center justify-center gap-2 text-center">
           <h1 className="text-7xl font-julius">RELIX 🐇</h1>
-          <h2 className="text-xl font-julius">
-            Le Dico Elix, en plus rapide... quand leurs vidéos fonctionnent 🤷
-          </h2>
+          <h2 className="text-xl font-julius">Le Dico Elix en plus rapide</h2>
         </div>
         {children}
       </body>
