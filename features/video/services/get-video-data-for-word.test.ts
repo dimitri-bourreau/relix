@@ -22,4 +22,9 @@ describe("getVideoDataForWord()", () => {
     };
     expect(videoData[1]).toEqual(mappedData);
   });
+
+  it("should not keep data without a video url", async () => {
+    const videoData = await getVideoDataForWord(adapter, "");
+    expect(videoData.length).toBe(3);
+  });
 });
