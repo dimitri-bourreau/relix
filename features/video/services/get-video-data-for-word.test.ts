@@ -16,6 +16,8 @@ describe("getVideoDataForWord()", () => {
       contributor: "Signes de sens",
       id: 189154,
       source: "http://dictionnaire.sensagent.com/SOLEIL/fr-fr/",
+      videoPosterUrl:
+        "https://elix-lsf.s3.rbx.io.cloud.ovh.net/spip_images/a373c3c0d12016a580094a0934049566.jpg",
       videoUrl:
         "https://elix-lsf.s3.rbx.io.cloud.ovh.net/spip_videos/92_soleil_1__nm_2td001-encoded.mp4",
       word: "soleil",
