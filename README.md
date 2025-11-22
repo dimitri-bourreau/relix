@@ -17,4 +17,4 @@ Notez que... j'accède à l'API d'Elix grâce à une clé disponible en clair en
 
 J'ai tenté de contacter le dev, en vain, je vais contacter l'asso qui s'occupe du dico et leur proposer mon aide.
 
-![capture d'écran de l'app]('./docs/relix-capture.png')
+![capture d'écran de l'app](docs/relix-capture.png)
