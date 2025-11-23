@@ -1,6 +1,7 @@
 "use client";
 
-import { useDeferredValue, useEffect, useState } from "react";
+import { ChangeEventHandler, useDeferredValue, useEffect } from "react";
+import { useQueryState } from "nuqs";
 import { useDebounce } from "@/hooks/use-debounce.hook";
 
 interface WordInputProps {
@@ -8,16 +9,23 @@ interface WordInputProps {
 }
 
 export const WordInput = ({ searchForWord }: WordInputProps) => {
-  const [inputQuery, setInputQuery] = useState("");
-  const debouncedInputQuery = useDebounce(inputQuery);
+  const [q, setQ] = useQueryState("q");
+  const debouncedInputQuery = useDebounce(q || "");
   const deferredInputQuery = useDeferredValue(debouncedInputQuery);
 
   useEffect(() => {
     void searchForWord(deferredInputQuery);
-  }, [deferredInputQuery, searchForWord]);
+    void setQ(deferredInputQuery);
+  }, [deferredInputQuery, searchForWord, setQ]);
 
   const handleDeleteInputQuery = () => {
-    setInputQuery("");
+    void setQ(null);
+  };
+
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = ({
+    target,
+  }) => {
+    void setQ(target.value);
   };
 
   return (
@@ -26,11 +34,11 @@ export const WordInput = ({ searchForWord }: WordInputProps) => {
         name="word-query"
         placeholder="Chercher un mot"
         className="bg-white/20 px-4 py-2 rounded text-center hover:bg-white/50 hover:cursor-pointer"
-        onChange={({ target }) => setInputQuery(target.value)}
-        value={inputQuery}
+        onChange={handleInputChange}
+        value={q || ""}
         autoFocus
       />
-      {inputQuery !== "" && (
+      {q !== "" && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 640 640"

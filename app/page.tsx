@@ -2,7 +2,7 @@
 
 import { WordInput } from "@/components/word-input.component";
 import { SearchResults } from "@/components/search-results.component";
-import { useState, useTransition } from "react";
+import { Suspense, useState, useTransition } from "react";
 import { Sign } from "@/features/video/types/sign.type";
 import { searchSign } from "@/actions/search-sign.action";
 
@@ -20,13 +20,13 @@ export default function Home() {
   };
 
   return (
-    <>
+    <Suspense>
       <SearchResults
         sign={sign}
         isPending={isPending}
         inputIsEmpty={inputQuery === ""}
       />
       <WordInput searchForWord={handleSearch} />
-    </>
+    </Suspense>
   );
 }
