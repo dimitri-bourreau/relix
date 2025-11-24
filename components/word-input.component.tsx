@@ -1,31 +1,30 @@
 "use client";
 
 import { ChangeEventHandler, useDeferredValue, useEffect } from "react";
-import { useQueryState } from "nuqs";
 import { useDebounce } from "@/hooks/use-debounce.hook";
+import { useUrlQuery } from "@/hooks/use-url-query.hook";
 
 interface WordInputProps {
   searchForWord: (word: string) => Promise<void>;
 }
 
 export const WordInput = ({ searchForWord }: WordInputProps) => {
-  const [q, setQ] = useQueryState("q");
+  const [{ q }, setQ] = useUrlQuery();
   const debouncedInputQuery = useDebounce(q || "");
   const deferredInputQuery = useDeferredValue(debouncedInputQuery);
 
   useEffect(() => {
     void searchForWord(deferredInputQuery);
-    void setQ(deferredInputQuery);
-  }, [deferredInputQuery, searchForWord, setQ]);
+  }, [deferredInputQuery, searchForWord]);
 
   const handleDeleteInputQuery = () => {
-    void setQ(null);
+    void setQ({ q: null });
   };
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = ({
     target,
   }) => {
-    void setQ(target.value);
+    void setQ({ q: target.value });
   };
 
   return (
@@ -35,7 +34,7 @@ export const WordInput = ({ searchForWord }: WordInputProps) => {
         placeholder="Chercher un mot"
         className="bg-white/20 px-4 py-2 rounded text-center hover:bg-white/50 hover:cursor-pointer"
         onChange={handleInputChange}
-        value={q || ""}
+        value={q}
         autoFocus
       />
       {q !== "" && (

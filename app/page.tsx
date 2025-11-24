@@ -8,24 +8,18 @@ import { searchSign } from "@/actions/search-sign.action";
 
 export default function Home() {
   const [sign, setSign] = useState<Sign | undefined>(undefined);
-  const [inputQuery, setInputQuery] = useState<string>("");
   const [isPending, startTransition] = useTransition();
 
   const handleSearch = async (word: string): Promise<void> => {
     startTransition(async () => {
       const signFromElix = await searchSign(word);
       setSign(signFromElix);
-      setInputQuery(word);
     });
   };
 
   return (
     <Suspense>
-      <SearchResults
-        sign={sign}
-        isPending={isPending}
-        inputIsEmpty={inputQuery === ""}
-      />
+      <SearchResults sign={sign} isPending={isPending} />
       <WordInput searchForWord={handleSearch} />
     </Suspense>
   );
