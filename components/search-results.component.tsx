@@ -13,7 +13,8 @@ export const SearchResults = ({ sign, isPending }: SearchResultsProps) => {
   return (
     <ResultsContainer inputIsEmpty={!q} isPending={isPending}>
       {!sign ? (
-        !q && <p>Elix n&apos;a pas trouvé de signe. 🙇</p>
+        !!q &&
+        !isPending && <p>Elix n&apos;a pas trouvé de signe pour {q}. 🙇</p>
       ) : (
         <video
           key={sign.videoUrl}
