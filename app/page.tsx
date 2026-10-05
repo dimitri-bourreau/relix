@@ -10,7 +10,7 @@ function HomeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get("q") || "";
-  
+
   const [query, setQuery] = useState(initialQuery);
   const [results, setResults] = useState<Meaning[]>([]);
   const [loading, setLoading] = useState(false);
@@ -69,11 +69,11 @@ function HomeContent() {
               <span className="ml-3">🐇</span>
             </h1>
           </Link>
-          
+
           <p className="text-lg md:text-xl text-fuchsia-100/80 font-medium tracking-widest uppercase">
             Le dico Elix en plus rapide
           </p>
-          
+
           <Link
             href="/vocabulaire-vu-en-cours"
             className="mt-4 px-8 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 hover:border-white/40"
@@ -90,7 +90,7 @@ function HomeContent() {
                 <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               </div>
             )}
-            
+
             {!loading && results.length > 0 && (
               <div className="grid gap-4">
                 {results.map((meaning, index) => (
@@ -109,7 +109,9 @@ function HomeContent() {
                             </span>
                           )}
                         </h3>
-                        <p className="text-white/80">{meaning.definition.meaning}</p>
+                        <p className="text-white/80">
+                          {meaning.definition.meaning}
+                        </p>
                       </div>
 
                       {/* Sign video */}
@@ -132,7 +134,9 @@ function HomeContent() {
             )}
 
             {!loading && query.trim() && results.length === 0 && (
-              <p className="text-center text-white/60">Aucun résultat pour "{query}"</p>
+              <p className="text-center text-white/60">
+                Aucun résultat pour "{query}"
+              </p>
             )}
           </div>
         </div>
@@ -159,17 +163,25 @@ export default function Home() {
     <div className="relative min-h-screen overflow-hidden">
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-violet-950 via-fuchsia-900 to-amber-900 animate-gradient" />
-      
+
       {/* Decorative orbs */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-fuchsia-500/30 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-32 right-10 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-600/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "0.75s" }} />
+      <div
+        className="absolute bottom-32 right-10 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse-glow"
+        style={{ animationDelay: "1.5s" }}
+      />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-600/20 rounded-full blur-3xl animate-pulse-glow"
+        style={{ animationDelay: "0.75s" }}
+      />
 
-      <Suspense fallback={
-        <div className="relative z-10 flex items-center justify-center min-h-screen">
-          <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-        </div>
-      }>
+      <Suspense
+        fallback={
+          <div className="relative z-10 flex items-center justify-center min-h-screen">
+            <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+          </div>
+        }
+      >
         <HomeContent />
       </Suspense>
     </div>

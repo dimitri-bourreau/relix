@@ -18,11 +18,15 @@ test.describe("Homepage", () => {
   test("should have a link to vocabulary page", async ({ page }) => {
     await page.goto("/");
 
-    const vocabLink = page.getByRole("link", { name: /Vocabulaire vu en cours/i });
+    const vocabLink = page.getByRole("link", {
+      name: /Vocabulaire vu en cours/i,
+    });
     await expect(vocabLink).toBeVisible();
   });
 
-  test("should navigate to vocabulary page when clicking the button", async ({ page }) => {
+  test("should navigate to vocabulary page when clicking the button", async ({
+    page,
+  }) => {
     await page.goto("/");
 
     await page.getByRole("link", { name: /Vocabulaire vu en cours/i }).click();
@@ -30,4 +34,3 @@ test.describe("Homepage", () => {
     await expect(page).toHaveURL("/vocabulaire-vu-en-cours");
   });
 });
-

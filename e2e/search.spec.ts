@@ -17,7 +17,9 @@ test.describe("Search functionality", () => {
     await page.goto("/?q=bonjour");
 
     // Wait for results to load
-    await expect(page.getByText("bonjour", { exact: false }).first()).toBeVisible({
+    await expect(
+      page.getByText("bonjour", { exact: false }).first(),
+    ).toBeVisible({
       timeout: 10000,
     });
   });
@@ -37,4 +39,3 @@ test.describe("Search functionality", () => {
     });
   });
 });
-

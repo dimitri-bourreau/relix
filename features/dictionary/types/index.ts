@@ -17,5 +17,3 @@ export interface ElixResponse {
   data: Meaning[];
   total: number;
 }
-
-

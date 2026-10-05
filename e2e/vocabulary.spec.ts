@@ -4,7 +4,9 @@ test.describe("Vocabulary page", () => {
   test("should display the page title", async ({ page }) => {
     await page.goto("/vocabulaire-vu-en-cours");
 
-    await expect(page.getByRole("heading", { name: /Vocabulaire vu en cours/i })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: /Vocabulaire vu en cours/i }),
+    ).toBeVisible();
   });
 
   test("should display word buttons", async ({ page }) => {
@@ -24,7 +26,9 @@ test.describe("Vocabulary page", () => {
     await expect(page).toHaveURL("/?q=femme");
   });
 
-  test("should navigate back to homepage when clicking the logo", async ({ page }) => {
+  test("should navigate back to homepage when clicking the logo", async ({
+    page,
+  }) => {
     await page.goto("/vocabulaire-vu-en-cours");
 
     await page.getByRole("link", { name: /RELIX/i }).click();
@@ -32,4 +36,3 @@ test.describe("Vocabulary page", () => {
     await expect(page).toHaveURL("/");
   });
 });
-

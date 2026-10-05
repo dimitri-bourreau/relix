@@ -63,4 +63,4 @@ MIT
 
 ---
 
-*Fait avec ❤️ et beaucoup d'IA*
+_Fait avec ❤️ et beaucoup d'IA_
